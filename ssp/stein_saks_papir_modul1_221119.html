@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <style>
+            img{
+                height: 250px;
+                width: 250px;
+                padding: 15px;
+            }
+
+            .text{
+                outline: 5px solid darkblue;
+                display: inline;
+                font-size: x-large;
+                margin-left: 80px;
+            }
+        </style>
+        <title>Stein, Saks eller... Papir?</title>
+    </head>
+    <body>
+        <img src="paper.png" onclick="playerChoice('papir')"> 
+        <img src="rock.jpg" onclick="playerChoice('stein')">
+        <img src="scissors.jpg" onclick="playerChoice('saks')">
+       
+        <div id="output"></div>
+
+
+        <script>
+        const outputDiv = document.getElementById("output");
+        let chosenByPlayer = " ";   
+        let chosenByAi = " ";
+
+        function playerChoice(choice){
+           console.log("choice func kjører");
+            chosenByPlayer = choice;
+            aiChoice();
+        checkWinning();
+        }
+
+        function aiChoice(){
+            
+           let random = 1+ Math.floor(Math.random()*3)
+           if(random == 1){ chosenByAi = "stein";}
+           if(random == 2){chosenByAi = "papir";}
+           if(random == 3){chosenByAi = "saks";}
+           console.log("AI velger");
+        }
+
+        function checkWinning(){
+            if(chosenByPlayer == "stein" && chosenByAi == "saks" 
+                || chosenByPlayer == "saks" && chosenByAi == "papir" 
+                || chosenByPlayer == "papir" && chosenByAi == "stein"){
+                outputDiv.innerHTML =`
+                                      <img src='won.jfif'> <br> 
+                                       <div class='text'> 
+                                       Du valgte: ${chosenByPlayer} og AI valgte ${chosenByAi} 
+                                       </div><br><br>
+                                       <p class='text'>DU VANT!</p>
+                                     `;
+            } 
+            else if(chosenByPlayer == chosenByAi && chosenByPlayer != " "){
+                outputDiv.innerHTML = `
+                                     <img src='tie.png'> <br>
+                                    <div class='text'>
+                                     Du valgte: ${chosenByPlayer} og AI valgte ${chosenByAi}
+                                    </div><br><br>
+                                    <p class='text'>  UAVGJORT! </p>
+                                    `;
+            }
+            else if(chosenByAi == "stein" && chosenByPlayer == "saks" 
+                || chosenByAi == "saks" && chosenByPlayer == "papir" 
+                || chosenByAi == "papir" && chosenByPlayer == "stein"){
+                outputDiv.innerHTML = `
+                                     <img src='loser.jpg'> <br>
+                                    <div class='text'>  Du valgte: ${chosenByPlayer} og AI valgte ${chosenByAi}
+                                    </div><br><br>
+                                    <p class='text'> DU TAPTE!</p>
+                                    ` ;
+               
+            } 
+            else{
+                outputDiv.innerHTML = "Something went wrong. Please select a choice!";
+            }
+            
+
+
+        }
+        </script>
+    </body>
+</html>
