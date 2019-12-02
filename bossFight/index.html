@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="">
+    <style>
+        img{
+            height: 250px;
+            width: 250px;
+            float: left;
+        }
+    </style>
+    </head>
+    <body>
+        <div id="bossIMG"></div>
+        <button id="attackButton" onclick="attackFunction()">ATTACK!</button>
+        <div id="output"></div>
+        
+        <select id="elementSelector"onchange="chosenElement(this)">
+            <option></option>
+            <option>Earth</option>
+            <option>Wind</option>
+            <option>Fire</option>
+            <option>Water</option>
+        </select>
+
+        <script>
+        const outputDiv = document.getElementById("output");
+        const bossIMG = document.getElementById("bossIMG"); 
+   
+
+         const bossImageArray = [
+                                 "img/earthElemental.png", 
+                                 "img/windElemental.jpg", 
+                                 "img/fireElemental.jpg",
+                                 "img/squirtleGlasses.jpg"
+                                 ];   
+
+        let playerHP = 75;
+        let playerPower;
+
+        let bossElement;
+        let bossHP = 150; 
+
+        chooseBossElement();
+        function chooseBossElement(){
+            let random =  Math.floor(Math.random()*4);
+            bossElement = bossImageArray[random];
+           
+            show();  
+        }   
+
+        function chosenElement(elementFromSelect){
+            if(elementFromSelect.value == "Earth"){
+                if(bossElement == "SquirtleWithSunglasses" ){
+                    playerPower = 20;
+                }
+                if(bossElement == "FireDragon" ){
+                    playerPower = 10;
+                }
+                else{ playerPower = 15;}
+                
+            }
+            if(elementFromSelect.value == "Wind"){
+              playerPower = 15;
+            }
+
+            if(elementFromSelect.value == "Fire"){
+                if(bossElement == "EarthGolem" ){
+                    playerPower = 20;
+                }
+                if(bossElement == "SquirtleWithSunglasses" ){
+                    playerPower = 10;
+                }
+                else{ playerPower = 15;}
+            }
+            if(elementFromSelect.value == "Water"){
+                if(bossElement == "FireDragon"){
+                    playerPower = 20;
+                }
+                if( bossElement == "EarthGolem"){
+                    playerPower = 10;
+                }
+                else{ playerPower = 15;}
+            }
+        }
+
+        show();    
+        function show(){
+            console.log(bossElement + " bosselement?");
+            bossIMG.innerHTML = ` 
+            BOSS HP: ${bossHP} <br>
+            <img src="${bossElement}">
+            `;
+    
+        }
+        function attackFunction(){
+          bossHP = bossHP - playerPower; 
+          show();  
+        }
+
+
+      
+        </script>
+    </body>
+    </html>
