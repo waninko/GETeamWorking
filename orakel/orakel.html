@@ -42,7 +42,7 @@ body {
             let randomAnswer;
 
             function getAnswer(){
-                let randomIndex = Math.floor(Math.random()* answerArray.length );
+                let randomIndex = Math.floor(Math.random()* answerArray.length -1 );
                 if(qInput.value == "jeg trenger hjelp"){
                     outputDiv.innerHTML = answerArray[6];
                 }
