@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PoMoDoRo!</title>
+</head>
+<body>
+
+    <div id="output"></div>
+    <script>
+    const outputDiv = document.getElementById("output");
+    let seconds = 58;
+    let minutes = 29;
+    let isTimerButtonPressed = false;
+    let oneSecondInterval
+    show();
+ 
+    function show(){
+      let html = `
+        <button onclick="startTimer()"> Start Timer </button> <br>
+        <button onclick="stopTimer('stop')"> Stop Timer </button> <br>
+        <button onclick="stopTimer('pause')"> Pause Timer </button> <br>
+        seconds passed: ${seconds} <br>
+        minutes passed: ${minutes}
+      `;
+      outputDiv.innerHTML = html;
+    }
+   
+
+    function countTime(){
+      if(seconds != 60 && isTimerButtonPressed == true){
+        seconds++;
+      }
+
+      if(seconds === 60){
+        seconds = 0;
+        minutes++;
+       
+      }
+
+      if(minutes === 30){
+        if(confirm("Ta pause nå")) {
+          //du valgte ok
+          minutes = 0;
+          seconds = 0;
+          isTimerButtonPressed = false;
+          console.log(minutes, seconds);
+          clearInterval(oneSecondInterval);
+          
+          
+        }
+        else{
+          //du valgte neitakk
+          minutes= 25;
+        }
+        
+      }
+      show();
+    }
+
+    function startTimer(){
+      isTimerButtonPressed = true;
+      oneSecondInterval = setInterval(countTime, 1000);
+    
+    }
+
+    function stopTimer(buttonChoice){
+      if(buttonChoice == "stop"){
+        clearInterval(oneSecondInterval);
+        seconds = 0;
+        minutes = 0;
+        show();
+      }
+      else if(buttonChoice == "pause"){
+        clearInterval(oneSecondInterval);
+      }
+    }
+    
+    </script>
+</body>
+</html>
