@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guessing Game</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+       const outputDiv = document.getElementById('output'); 
+       const answerArray = ["choice1" , "choice2", "choice3"];
+       let choiceRightOrWrong = "";
+       let answer = "";
+       let hideShow = "none";
+
+       drawHTML();
+       function drawHTML(){
+           outputDiv.innerHTML = `
+           <div>Number of Right answers: </div>
+            <div>Item 1</div>
+          
+
+           <div style="display: ${hideShow}"> Your choice was ${choiceRightOrWrong} - the opponent was thinking of ${answer}. 
+           </div>
+           `;
+         
+       }
+
+       function guessMatcher(userChoice){
+        let randomIndex = Math.floor(Math.random()* answerArray.length);
+        let randomAnswer = answerArray[randomIndex];
+
+        if(userChoice == randomAnswer){
+            choiceRightOrWrong = "RIGHT!";
+        }
+        else{
+            choiceRightOrWrong = "WRONG!";
+        }
+        drawHTML();
+       }
+
+    </script>
+    
+</body>
+</html>
