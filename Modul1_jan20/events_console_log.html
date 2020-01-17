@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test av Events & console.log</title>
+</head>
+<body>
+
+<div onclick="onclickHasHappened()" oncontextmenu="onContext()" id="output"> 
+TRYKK HER SÅ SKJER DET NOE
+</div>
+
+<h2 id="header" ></h2>
+
+ <script>
+let outputDiv = document.getElementById("output");
+let outputHeader = document.getElementById("header");
+
+let number = 5;
+let tall = 2;
+calculate();
+
+function onclickHasHappened(){
+    //outputHeader.innerHTML += " Nå har du trykket på div'en!" + "<br>";
+    console.log(number, " er denne 5?")
+   
+}
+
+function onContext(){
+    //outputHeader.innerHTML += " bra contextmeny! "  + "<br>";
+    console.log(" Nå åpna du en context meny! (oncontextmenu)")
+}
+function calculate(){
+  let numbersAdded =  tall + number;
+    console.log(numbersAdded , " er denne 7?");
+}
+
+
+    </script>
+</body>
+</html>
