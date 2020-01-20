@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Headersize with the click of a button!</title>
+    <style>
+        button{
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <button id="h1" onclick="resizeHeader(this)">Stor header</button>
+    <button id="h2" onclick="resizeHeader(this)">Medium Header</button>
+    <button id="h3" onclick="resizeHeader(this)">Liten Header</button>
+    <div id="output"> 
+        <h1>Overskrift</h1>
+    </div>
+
+    <script>
+    var outputdiv = document.getElementById("output");
+
+    function resizeHeader(buttonClicked){
+        //               <          h1             >   
+        let newHeader = "<" + buttonClicked.id + ">" +
+        //Overskrift     </          h1           >
+        "Overskrift" + "</" + buttonClicked.id + ">";
+        outputdiv.innerHTML = newHeader;
+    }
+    </script>
+    
+</body>
+</html>
