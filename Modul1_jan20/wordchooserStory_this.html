@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Your Own Story - Wordchooser</title>
+    <style>
+        div{
+            float: left;
+            margin: 10px;
+            
+        }
+
+        .storyBox{
+            border: 2px dashed pink;
+            padding: 30px;
+            font-size: 25px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .startRow{
+            clear:left;
+        }
+
+        .choiceBoxes{
+            font-size: 20px;
+            background-color:  lightseagreen ;
+            border: 2px solid cornflowerblue;
+            border-radius: 50%;
+            padding: 10px;
+            width: 70px;
+            height: 30px;
+            text-align:center;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="storyBox" id="storyOutput">
+
+    </div>
+<div class="startRow choiceBoxes" onclick="chooseFirstWord(this)">Green</div> 
+<div class="choiceBoxes"  onclick="chooseFirstWord(this)">Red</div>
+
+<div class="startRow choiceBoxes"  onclick="chooseSecondWord(this)">Cat</div> 
+<div class="choiceBoxes"  onclick="chooseSecondWord(this)">Man</div>
+
+<div class="startRow choiceBoxes"  onclick="chooseThirdWord(this)">Stared</div> 
+<div class="choiceBoxes" onclick="chooseThirdWord(this)">Jumped</div>
+
+<div class="startRow choiceBoxes"  onclick="chooseFourthWord(this)">Pool</div> 
+<div class="choiceBoxes"  onclick="chooseFourthWord(this)">Wall</div>
+
+    <script>
+    //OPPGAVETEMA: Bruk av this, onclick, bruk av innerHTML og variabler   
+   
+
+    const output = document.getElementById("storyOutput");
+    var firstWord = "___";
+    var secondWord = "___";
+    var thirdWord = "___";
+    var fourthWord = "___";
+
+    buildStory();   
+    
+    function buildStory(){
+        output.innerHTML = `
+        Once, there was a ${firstWord} ${secondWord} that ${thirdWord} in the ${fourthWord} -
+        and great things happened. The End.
+        `;
+
+      
+
+    }
+   
+    function chooseFirstWord(firstChoice){
+        firstWord = firstChoice.innerHTML;
+        buildStory(); 
+    }    
+
+    function chooseSecondWord(secondChoice){
+        secondWord = secondChoice.innerHTML;
+        buildStory(); 
+    }
+
+    function chooseThirdWord(thirdChoice){
+        thirdWord = thirdChoice.innerHTML;
+        buildStory(); 
+    }
+
+    function chooseFourthWord(fourthChoice){
+        fourthWord = fourthChoice.innerHTML;
+        buildStory(); 
+    }
+
+  
+    </script>
+</body>
+</html>
