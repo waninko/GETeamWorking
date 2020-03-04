@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        
+        .stats{
+           position:absolute;
+           right: 10%;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BossFight!</title>
+</head>
+<body>
+
+    <div id="output"></div>
+
+    <script>
+        const outputDiv = document.getElementById("output");
+
+        let playerObj = {
+            hp: 300,
+            dps: 20
+        };
+
+        let bossObj = {
+            hp: 900,
+            dps: 30
+        };
+
+        let someoneHasDied = "";
+        show();
+        function show(){
+
+        let nukeAviable = "disabled";
+            if(playerObj.hp <= 10){
+                nukeAviable = "";
+            }
+
+            outputDiv.innerHTML = `
+            Player HP: ${playerObj.hp} 
+            <button class="stats">PlayerStats</button> <br>
+            Boss HP: ${bossObj.hp} <br>
+            <button ${someoneHasDied} onclick=" playerAttack()">ATTACK!</button>
+            <button ${nukeAviable} onclick="nuke()">NUCLEAR ACTION OPTION</button>
+            `;
+        }
+
+        function playerAttack(){
+            let bossHP = bossObj.hp;
+            let playerAttack = playerObj.dps;
+
+
+            let doesPlayerGetCrit = Math.random();
+            let playerCritvalue = Math.floor(Math.random(playerAttack)*50);
+       
+            if(doesPlayerGetCrit > 0.85){
+               playerAttack = playerAttack + playerCritvalue;
+            }
+            bossObj.hp = bossHP - playerAttack;
+            show();
+            playerWins();
+            bossAttack();
+
+        }
+
+
+        function bossAttack(){
+           let playerHP = playerObj.hp;
+           let bossAttack = bossObj.dps;
+
+
+           let doesBossGetCrit = Math.random();
+           let bossCritValue = Math.floor(Math.random(bossAttack)* 7);
+
+           if(doesBossGetCrit > 0.1){
+               bossAttack = bossAttack + bossCritValue;
+           }
+           playerObj.hp = playerHP - bossAttack;
+           bossWins();
+           show();
+        }
+
+        function playerWins(){
+            if(bossObj.hp <= 0){
+                bossObj.hp = 0;
+                alert("DU VANT - YOU'RE WINNER");
+                someoneHasDied = "disabled";
+            }
+
+            show();
+        }
+
+        function bossWins(){
+            if(playerObj.hp <= 0){
+                playerObj.hp = 0;
+                alert("DU VTAPTE - YOU'RE LOOSS");
+                someoneHasDied = "disabled";
+            }
+
+            show();
+        }
+        
+        function nuke(){
+          bossObj.hp = 0;
+          show();
+          alert("DU VANT - YOU'RE WINNER");
+        }
+
+
+    </script>
+    
+</body>
+</html>
